@@ -1,4 +1,4 @@
-package org.nampython.core.engine;
+package org.nampython.core.container;
 
 
 import com.cyecize.ioc.annotations.Autowired;
@@ -29,7 +29,7 @@ import java.util.regex.Pattern;
  *
  */
 @Service
-public class Dispatcher implements RequestHandler {
+public class ServletContainer implements RequestHandler {
     private static final String MISSING_SOLET_ANNOTATION_FORMAT = "Missing solet annotation for class named %s.";
     public static final String CONFIG_ASSETS_DIR;
     public static final String CFG_WORKING_DIR;
@@ -62,7 +62,7 @@ public class Dispatcher implements RequestHandler {
     private List<String> applicationNames;
 
     @Autowired
-    public Dispatcher(ConfigCenter configCenter, SessionManagement sessionManagement) {
+    public ServletContainer(ConfigCenter configCenter, SessionManagement sessionManagement) {
         this.configCenter = configCenter;
         this.sessionManagement = sessionManagement;
         this.assetsDir = this.getAssetsDir();
@@ -377,9 +377,9 @@ public class Dispatcher implements RequestHandler {
      */
     private DispatcherConfig<String> createDispatcherConfig() {
         final DispatcherConfig<String> soletConfig = new DispatcherConfig<>();
-        soletConfig.setAttribute(Dispatcher.CONFIG_SESSION_STORAGE_KEY, this.sessionManagement.getSessionStorage());
-        soletConfig.setAttribute(Dispatcher.CONFIG_SERVER_CONFIG_SERVICE_KEY, this.configCenter);
-        soletConfig.setAttribute(Dispatcher.CONFIG_DEPENDENCY_CONTAINER_KEY, IocCenter.getRequestHandlersDependencyContainer());
+        soletConfig.setAttribute(ServletContainer.CONFIG_SESSION_STORAGE_KEY, this.sessionManagement.getSessionStorage());
+        soletConfig.setAttribute(ServletContainer.CONFIG_SERVER_CONFIG_SERVICE_KEY, this.configCenter);
+        soletConfig.setAttribute(ServletContainer.CONFIG_DEPENDENCY_CONTAINER_KEY, IocCenter.getRequestHandlersDependencyContainer());
         return soletConfig;
     }
 

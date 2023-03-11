@@ -6,6 +6,7 @@ import com.cyecize.ioc.annotations.Service;
 import com.cyecize.ioc.models.ServiceDetails;
 import org.nampython.base.BaseHttp;
 import org.nampython.base.Controller;
+import org.nampython.core.container.ServletContainer;
 import org.nampython.support.IocCenter;
 
 
@@ -20,7 +21,7 @@ import java.util.*;
 public class LoadingRequestHandler implements InitLoadingRequest {
     /**
      * {@link LinkedList<RequestHandler>} Store all the classes that implement {@link RequestHandler}
-     * It includes{@code} {@link org.nampython.core.engine.Dispatcher}, {@link org.nampython.core.engine.RequestProcessor}, {@link org.nampython.core.engine.ResourceHandler}, {@link org.nampython.core.engine.FallbackHandler}
+     * It includes{@code} {@link ServletContainer}, {@link org.nampython.core.engine.RequestProcessor}, {@link org.nampython.core.engine.ResourceHandler}, {@link org.nampython.core.engine.FallbackHandler}
      */
     private final LinkedList<RequestHandler> requestHandlers;
     /**
@@ -71,8 +72,8 @@ public class LoadingRequestHandler implements InitLoadingRequest {
 
     /**
      *  Need to call the init method of each implement {@link RequestHandler}. But the specified init method is just called
-     * in the {@link org.nampython.core.engine.Dispatcher} and {@link org.nampython.core.engine.ResourceHandler}
-     * At {@link org.nampython.core.engine.Dispatcher} we will find all class that having {@link Controller} annotation and
+     * in the {@link ServletContainer} and {@link org.nampython.core.engine.ResourceHandler}
+     * At {@link ServletContainer} we will find all class that having {@link Controller} annotation and
      * extends {@link BaseHttp}. Besides, We need also to decide the application's name.
      * @param requestHandlers List of the requestHandlers
      */
