@@ -19,7 +19,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  This class is a part of {@link RequestHandler}. The responsible for this class is to parse HTTP Request from client or browser.
+ *  This class is a part of {@link RequestHandler}. The responsible for this class is to listen for incoming connections on
+ *  configured TCP ports on the server and forwards requests to the {@link ResourceHandler} for processing and returning a response to the requesting client.
  *  Each request comes from the client need to know the  attributes. Set theses to {@link BaseHttpRequest}
  *  <ul>
  *      <li><b>HTTP request methods:</b> (GET, POST, PUT, DELETE...)</li>
