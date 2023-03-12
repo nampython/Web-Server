@@ -24,8 +24,8 @@ public class StartServer {
      * @param port A port number is the logical address of each application or process that uses a network or the Internet to communicate.
      * @param serverInitializationClass the entry class for the application
      */
-    public static void startServer(Integer port, Class<?> serverInitializationClass) {
-        startServer(port, new HashMap<>(), serverInitializationClass);
+    public static void run(Integer port, Class<?> serverInitializationClass) {
+        run(port, new HashMap<>(), serverInitializationClass);
     }
 
     /**
@@ -33,8 +33,8 @@ public class StartServer {
      * @param config the configuration for the application
      * @param serverInitializationClass the entry class for the application
      */
-    public static void startServer(Integer port, Map<String, Object> config, Class<?> serverInitializationClass) {
-        startServer(port, config, serverInitializationClass, null);
+    public static void run(Integer port, Map<String, Object> config, Class<?> serverInitializationClass) {
+        run(port, config, serverInitializationClass, null);
     }
 
     /**
@@ -44,7 +44,7 @@ public class StartServer {
      * @param serverInitializationClass the entry point class
      * @param onServerLoadedEvent Runnable
      */
-    private static void startServer(Integer port, Map<String, Object> config, Class<?> serverInitializationClass, Runnable onServerLoadedEvent) {
+    private static void run(Integer port, Map<String, Object> config, Class<?> serverInitializationClass, Runnable onServerLoadedEvent) {
         Logger loggingService = null;
 
         try {
