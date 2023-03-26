@@ -1,9 +1,10 @@
 package org.nampython.core;
 
 
-import com.cyecize.ioc.annotations.Autowired;
-import com.cyecize.ioc.annotations.Service;
-import com.cyecize.ioc.models.ServiceDetails;
+
+import org.ioc.engine.ComponentModel;
+import org.ioc.stereotype.Autowired;
+import org.ioc.stereotype.Service;
 import org.nampython.base.BaseHttp;
 import org.nampython.base.Controller;
 import org.nampython.core.container.ServletContainer;
@@ -52,7 +53,7 @@ public class LoadingRequestHandler implements InitLoadingRequest {
      *
      */
     private void handlerRequestDestroyHandlers() {
-        for (ServiceDetails implementation : IocCenter.getServerDependencyContainer().getImplementations(RequestDestroy.class)) {
+        for (ComponentModel implementation : IocCenter.getServerDependencyContainer().getImplementations(RequestDestroy.class)) {
             this.destroyHandlers.add((RequestDestroy) implementation.getInstance());
         }
     }
@@ -61,8 +62,8 @@ public class LoadingRequestHandler implements InitLoadingRequest {
      * Get all instances that implement  {@link RequestHandler} and call the init method
      */
     private void handlerRequestHandlers() {
-        Collection<ServiceDetails> implementationOfRequestHandlers =  IocCenter.getServerDependencyContainer().getImplementations(RequestHandler.class);
-        for (ServiceDetails next : implementationOfRequestHandlers) {
+        Collection<ComponentModel> implementationOfRequestHandlers =  IocCenter.getServerDependencyContainer().getImplementations(RequestHandler.class);
+        for (ComponentModel next : implementationOfRequestHandlers) {
             RequestHandler instance = (RequestHandler) next.getInstance();
             this.requestHandlers.add(instance);
         }

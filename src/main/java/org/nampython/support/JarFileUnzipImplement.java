@@ -1,6 +1,7 @@
 package org.nampython.support;
 
-import com.cyecize.ioc.annotations.Service;
+import org.ioc.stereotype.Service;
+
 import java.io.*;
 import java.util.Enumeration;
 import java.util.jar.JarEntry;

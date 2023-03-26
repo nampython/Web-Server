@@ -1,7 +1,7 @@
 package org.nampython.core;
 
-import com.cyecize.ioc.annotations.Service;
 import org.apache.tika.Tika;
+import org.ioc.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,7 +1,7 @@
 package org.nampython.support;
 
-import com.cyecize.ioc.annotations.Autowired;
-import com.cyecize.ioc.annotations.Service;
+import org.ioc.stereotype.Autowired;
+import org.ioc.stereotype.Service;
 import org.nampython.config.ConfigCenter;
 import org.nampython.config.ConfigValue;
 

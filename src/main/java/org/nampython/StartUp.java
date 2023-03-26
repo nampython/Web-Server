@@ -1,6 +1,5 @@
 package org.nampython;
 
-import com.cyecize.ioc.MagicInjector;
 
 public class StartUp {
     /**

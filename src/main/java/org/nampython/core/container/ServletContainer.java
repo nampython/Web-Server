@@ -1,8 +1,7 @@
 package org.nampython.core.container;
 
-
-import com.cyecize.ioc.annotations.Autowired;
-import com.cyecize.ioc.annotations.Service;
+import org.ioc.stereotype.Autowired;
+import org.ioc.stereotype.Service;
 import org.nampython.base.*;
 import org.nampython.base.api.BaseHttpRequest;
 import org.nampython.base.api.BaseHttpResponse;

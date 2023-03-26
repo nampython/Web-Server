@@ -1,7 +1,7 @@
 package org.nampython.creation;
 
-import com.cyecize.ioc.annotations.Bean;
-import com.cyecize.ioc.annotations.PostConstruct;
+import org.ioc.stereotype.Bean;
+import org.ioc.stereotype.PostConstruct;
 import org.nampython.config.*;
 import org.nampython.support.JarFileUnzip;
 import org.nampython.support.JarFileUnzipImplement;

@@ -1,27 +1,28 @@
 package org.nampython.support;
 
-import com.cyecize.ioc.services.DependencyContainer;
+
+import org.ioc.contex.ApplicationContext;
 
 public class IocCenter {
-    private static DependencyContainer serverDependencyContainer;
-    private static DependencyContainer requestHandlersDependencyContainer;
+    private static ApplicationContext serverDependencyContainer;
+    private static ApplicationContext requestHandlersDependencyContainer;
 
-    public static void setServerDependencyContainer(DependencyContainer serverDependencyContainer) {
+    public static void setServerDependencyContainer(ApplicationContext serverDependencyContainer) {
         if (serverDependencyContainer != null) {
             IocCenter.serverDependencyContainer = serverDependencyContainer;
 
         }
     }
 
-    public static void setRequestHandlersDependencyContainer(DependencyContainer requestHandlersDependencyContainer) {
+    public static void setRequestHandlersDependencyContainer(ApplicationContext requestHandlersDependencyContainer) {
         IocCenter.requestHandlersDependencyContainer = requestHandlersDependencyContainer;
     }
 
-    public static DependencyContainer getServerDependencyContainer() {
+    public static ApplicationContext getServerDependencyContainer() {
         return serverDependencyContainer;
     }
 
-    public static DependencyContainer getRequestHandlersDependencyContainer() {
+    public static ApplicationContext getRequestHandlersDependencyContainer() {
         return requestHandlersDependencyContainer;
     }
 }

@@ -1,6 +1,6 @@
 package org.nampython.core;
 
-import com.cyecize.ioc.annotations.Service;
+import org.ioc.stereotype.Service;
 import org.nampython.base.*;
 import org.nampython.base.api.*;
 

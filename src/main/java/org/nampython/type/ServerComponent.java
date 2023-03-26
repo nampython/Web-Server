@@ -1,7 +1,8 @@
 package org.nampython.type;
 
-import com.cyecize.ioc.annotations.AliasFor;
-import com.cyecize.ioc.annotations.Service;
+
+import org.ioc.stereotype.AliasFor;
+import org.ioc.stereotype.Service;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

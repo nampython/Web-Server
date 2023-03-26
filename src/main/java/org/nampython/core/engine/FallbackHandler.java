@@ -1,6 +1,6 @@
 package org.nampython.core.engine;
 
-import com.cyecize.ioc.annotations.Service;
+import org.ioc.stereotype.Service;
 import org.nampython.base.api.BaseHttpResponse;
 import org.nampython.base.api.HttpStatus;
 import org.nampython.core.RequestHandler;

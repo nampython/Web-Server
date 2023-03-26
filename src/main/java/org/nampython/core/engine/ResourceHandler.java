@@ -1,8 +1,8 @@
 package org.nampython.core.engine;
 
-import com.cyecize.ioc.annotations.Autowired;
-import com.cyecize.ioc.annotations.PostConstruct;
-import com.cyecize.ioc.annotations.Service;
+import org.ioc.stereotype.Autowired;
+import org.ioc.stereotype.PostConstruct;
+import org.ioc.stereotype.Service;
 import org.nampython.base.api.BaseHttpRequest;
 import org.nampython.base.api.BaseHttpResponse;
 import org.nampython.base.api.HttpStatus;

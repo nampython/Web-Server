@@ -1,8 +1,8 @@
 package org.nampython;
 
-import com.cyecize.ioc.MagicInjector;
-import com.cyecize.ioc.config.MagicConfiguration;
-import com.cyecize.ioc.services.DependencyContainer;
+import org.ioc.InitApplicationContext;
+import org.ioc.configuration.Configuration;
+import org.ioc.contex.ApplicationContext;
 import org.nampython.config.ConfigCenter;
 import org.nampython.config.ConfigValue;
 import org.nampython.core.BaseServer;
@@ -46,24 +46,24 @@ public class StartServer {
      */
     private static void run(Integer port, Map<String, Object> config, Class<?> serverInitializationClass, Runnable onServerLoadedEvent) {
         Logger loggingService = null;
-
         try {
-            MagicConfiguration magicConfiguration = new MagicConfiguration()
+            Configuration magicConfiguration = new Configuration()
                     .scanning()
-                    .addCustomServiceAnnotation(ServerComponent.class)
+                    .addComponentAnnotation(ServerComponent.class)
                     .and()
                     .build();
             BeanCenter.port = 8080;
             BeanCenter.mainClass = serverInitializationClass;
             BeanCenter.configs = new HashMap<>();
-            final DependencyContainer dependencyContainer = MagicInjector.run(StartServer.class, magicConfiguration);
-            IocCenter.setServerDependencyContainer(dependencyContainer);
-            IocCenter.setRequestHandlersDependencyContainer(dependencyContainer);
-            loadRequestHandlers(dependencyContainer.getService(InitLoadingRequest.class));
-            loggingService = dependencyContainer.getService(Logger.class);
+            final ApplicationContext applicationContext = InitApplicationContext.run(StartServer.class, magicConfiguration);
+            IocCenter.setServerDependencyContainer(applicationContext);
+            IocCenter.setRequestHandlersDependencyContainer(applicationContext);
+            loadRequestHandlers(applicationContext.getBean(InitLoadingRequest.class));
+            loggingService = applicationContext.getBean(Logger.class);
+
             final BaseServer server = new ServerImplement(
-                    dependencyContainer.getService(InitLoadingRequest.class),
-                    dependencyContainer.getService(ConfigCenter.class).getConfigValue(ConfigValue.SERVER_PORT, int.class)
+                    applicationContext.getBean(InitLoadingRequest.class),
+                    applicationContext.getBean(ConfigCenter.class).getConfigValue(ConfigValue.SERVER_PORT, int.class)
             );
             if (onServerLoadedEvent != null) {
                 onServerLoadedEvent.run();
@@ -81,11 +81,11 @@ public class StartServer {
 
     /**
      *
-     * @param dependencyContainer {@link DependencyContainer} Contains all Services
+     * @param applicationContext {@link ApplicationContext} Contains all Services
      * @param <T>
      */
-    private static <T> void loadRequestHandlers(T dependencyContainer) {
-        InitLoadingRequest initLoadingRequest = (InitLoadingRequest) dependencyContainer;
+    private static <T> void loadRequestHandlers(T applicationContext) {
+        InitLoadingRequest initLoadingRequest = (InitLoadingRequest) applicationContext;
         initLoadingRequest.loadRequestHandlers(new ArrayList<>(), null, null);
     }
 }

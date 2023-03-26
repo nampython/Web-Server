@@ -1,7 +1,7 @@
 package org.nampython.core.engine;
 
-import com.cyecize.ioc.annotations.Autowired;
-import com.cyecize.ioc.annotations.Service;
+import org.ioc.stereotype.Autowired;
+import org.ioc.stereotype.Service;
 import org.jetbrains.annotations.NotNull;
 import org.nampython.base.api.*;
 import org.nampython.config.ConfigCenter;
