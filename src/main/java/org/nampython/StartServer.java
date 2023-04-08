@@ -52,7 +52,7 @@ public class StartServer {
                     .addComponentAnnotation(ServerComponent.class)
                     .and()
                     .build();
-            BeanCenter.port = 8080;
+            BeanCenter.port = port;
             BeanCenter.mainClass = serverInitializationClass;
             BeanCenter.configs = new HashMap<>();
             final ApplicationContext applicationContext = InitApplicationContext.run(StartServer.class, magicConfiguration);

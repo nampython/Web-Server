@@ -29,6 +29,7 @@ public class ServerImplement extends BaseServer {
     /**
      * Socket is opening for listening the connections from the client and with each the new request need to open
      * a new thread where the connection is handled.
+     *
      * @throws IOException
      */
     @Override
@@ -37,18 +38,16 @@ public class ServerImplement extends BaseServer {
         serverSocket.setSoTimeout(SOCKET_TIMEOUT_MILLISECONDS);
         System.out.println(String.format(LISTENING_MESSAGE_FORMAT, this.port));
         while (true) {
-            while (true) {
-                try {
-                    final Socket client = serverSocket.accept();
-                    client.setSoTimeout(SOCKET_TIMEOUT_MILLISECONDS);
-                    final Thread thread = new Thread(new ConnectionHandler(
-                            client,
-                            this.initLoadingRequest.getRequestHandlers(),
-                            this.initLoadingRequest.getRequestDestroyHandlers()
-                    ));
-                    thread.start();
-                } catch (SocketTimeoutException ignored) {
-                }
+            try {
+                final Socket client = serverSocket.accept();
+                client.setSoTimeout(SOCKET_TIMEOUT_MILLISECONDS);
+                final Thread thread = new Thread(new ConnectionHandler(
+                        client,
+                        this.initLoadingRequest.getRequestHandlers(),
+                        this.initLoadingRequest.getRequestDestroyHandlers()
+                ));
+                thread.start();
+            } catch (SocketTimeoutException ignored) {
             }
         }
     }
